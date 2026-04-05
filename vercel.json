@@ -1,6 +1,5 @@
 {
-  "buildCommand": "echo 'Static site'",
+  "buildCommand": "ls -la public/",
   "outputDirectory": "public",
-  "cleanUrls": true,
-  "trailingSlash": false
+  "framework": "static"
 }
