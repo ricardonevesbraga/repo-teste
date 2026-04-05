@@ -1,8 +1,13 @@
 {
-  "buildCommand": "echo 'Skipping build - static files only'",
-  "outputDirectory": ".",
+  "buildCommand": "echo 'Static files only'",
+  "outputDirectory": "public",
   "public": true,
-  "regions": ["sfo1"],
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/landing-page-masterclass.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
