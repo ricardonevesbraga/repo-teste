@@ -1,0 +1,17 @@
+{
+  "buildCommand": "echo 'Skipping build - static files only'",
+  "outputDirectory": ".",
+  "public": true,
+  "regions": ["sfo1"],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
+      ]
+    }
+  ]
+}
