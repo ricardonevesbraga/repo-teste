@@ -8,3 +8,7 @@ node_modules/
 dist/
 build/
 .next/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
