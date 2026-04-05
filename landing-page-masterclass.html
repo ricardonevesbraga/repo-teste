@@ -697,17 +697,39 @@
 
         <!-- Right - Visual -->
         <div class="visual-container">
-          <div class="visual-main" style="background: linear-gradient(135deg, #0A0E15 0%, #141B26 100%); border: 2px solid var(--border-color); position: relative; overflow: hidden;">
-            <!-- Foto do Instrutor -->
-            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #FF5722 0%, #FF9800 100%); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; font-size: 48px;">
-              Ric
-            </div>
+          <div class="visual-main" style="background: linear-gradient(135deg, #0A0E15 0%, #141B26 100%); border: 2px solid var(--border-color); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 24px; padding: 40px;">
+            <!-- Logo Claude Code -->
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Background Circle -->
+              <circle cx="60" cy="60" r="58" fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.2"/>
+
+              <!-- Claude C Logo -->
+              <g transform="translate(30, 30)">
+                <!-- Main C Shape -->
+                <path d="M 15 5 Q 25 5 28 15 Q 30 22 28 30 Q 25 40 15 40 Q 10 40 8 38"
+                      fill="none" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Inner accent -->
+                <circle cx="20" cy="22" r="8" fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.6"/>
+              </g>
+
+              <!-- Gradient Accent -->
+              <circle cx="70" cy="70" r="25" fill="none" stroke="url(#grad)" stroke-width="2"/>
+              <defs>
+                <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:var(--primary);stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#FF5722;stop-opacity:1" />
+                </linearGradient>
+              </defs>
+            </svg>
 
             <!-- Conteúdo -->
-            <div style="position: relative; z-index: 2; text-align: center;">
-              <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600;">Instrutor</div>
-              <div style="font-size: 32px; font-weight: 900; margin-bottom: 4px;">Ricardo Neves</div>
-              <div style="font-size: 14px; color: var(--primary); font-weight: 600;">Arquiteto de Sistemas IA</div>
+            <div style="text-align: center;">
+              <div style="font-size: 14px; color: var(--primary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Powered by</div>
+              <div style="font-size: 28px; font-weight: 900; margin-bottom: 8px;">Claude Code</div>
+              <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.5;">
+                Construído com a ferramenta<br>mais poderosa de IA do mercado
+              </div>
             </div>
           </div>
 
