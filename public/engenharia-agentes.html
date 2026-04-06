@@ -7,6 +7,603 @@
   <title>Engenharia de Agentes | Claude Code + OpenClaw</title>
 
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-red: #FF3333;
+      --dark-bg: #0A0A0A;
+      --text-white: #FFFFFF;
+      --text-gray: #CCCCCC;
+      --red-neon: #FF1111;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--dark-bg);
+      color: var(--text-white);
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Top Bar */
+    .top-bar {
+      background: linear-gradient(90deg, rgba(255, 51, 51, 0.15) 0%, rgba(255, 51, 51, 0.08) 100%);
+      border-bottom: 1px solid rgba(255, 51, 51, 0.3);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .top-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+    }
+
+    .top-bar-left::before {
+      content: '●';
+      color: var(--primary-red);
+      font-size: 8px;
+    }
+
+    .top-cta {
+      background: var(--primary-red);
+      color: var(--dark-bg);
+      padding: 11px 28px;
+      border: 2px solid var(--primary-red);
+      border-radius: 4px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .top-cta:hover {
+      background: var(--dark-bg);
+      color: var(--primary-red);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(255, 51, 51, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #000000 0%, #1a0000 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 20px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255, 51, 51, 0.25) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 51, 51, 0.15) 0%, transparent 50%),
+        linear-gradient(180deg, rgba(255, 51, 51, 0.08) 0%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 51, 51, 0.05) 50%, transparent 100%);
+      pointer-events: none;
+      z-index: 1;
+      animation: neon-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes neon-pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      text-align: center;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo-section {
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--primary-red);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--primary-red);
+      text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+    }
+
+    .logo-text {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(255, 51, 51, 0.15);
+      border: 1px solid rgba(255, 51, 51, 0.5);
+      color: var(--primary-red);
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 32px;
+      font-weight: 700;
+      text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+    }
+
+    .tag::before {
+      content: '●';
+      margin-right: 8px;
+      font-size: 6px;
+    }
+
+    .headline {
+      font-size: clamp(40px, 9vw, 76px);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+
+    .headline-red {
+      color: var(--primary-red);
+      display: block;
+      text-shadow: 0 0 30px rgba(255, 51, 51, 0.5);
+    }
+
+    .description {
+      font-size: 16px;
+      color: var(--text-gray);
+      margin-bottom: 40px;
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+      font-weight: 500;
+    }
+
+    .description strong {
+      color: var(--primary-red);
+      font-weight: 700;
+    }
+
+    .main-cta {
+      background: var(--primary-red);
+      color: var(--dark-bg);
+      padding: 20px 56px;
+      border: 2px solid var(--primary-red);
+      border-radius: 4px;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 48px;
+      font-family: 'Space Grotesk', sans-serif;
+      box-shadow: 0 0 30px rgba(255, 51, 51, 0.3);
+    }
+
+    .main-cta:hover {
+      background: var(--dark-bg);
+      color: var(--primary-red);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(255, 51, 51, 0.4);
+    }
+
+    .cta-arrow {
+      font-size: 20px;
+    }
+
+    .event-info {
+      font-size: 13px;
+      color: var(--text-gray);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      letter-spacing: 0.5px;
+    }
+
+    .event-info span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .event-info span::before {
+      content: '●';
+      color: var(--primary-red);
+      font-size: 6px;
+    }
+
+    /* Footer Pattern */
+    .footer-pattern {
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 51, 51, 0.08) 50%, transparent 100%);
+      padding: 50px 20px 40px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 51, 51, 0.2);
+      margin-top: 80px;
+      position: relative;
+    }
+
+    .pattern-text {
+      font-size: 12px;
+      color: var(--text-gray);
+      letter-spacing: 2px;
+      word-spacing: 12px;
+      opacity: 0.5;
+      font-weight: 600;
+    }
+
+    .pattern-text .red {
+      color: var(--primary-red);
+    }
+
+    /* Seções */
+    section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 900;
+      margin-bottom: 60px;
+      text-align: center;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .section-title .red {
+      color: var(--primary-red);
+      text-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
+    }
+
+    .section-description {
+      font-size: 16px;
+      color: var(--text-gray);
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
+      line-height: 1.8;
+    }
+
+    /* Steps Grid */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .step-card {
+      background: linear-gradient(135deg, rgba(26, 0, 0, 0.8) 0%, rgba(50, 0, 0, 0.4) 100%);
+      border: 1px solid rgba(255, 51, 51, 0.3);
+      padding: 36px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .step-card:hover {
+      border-color: var(--primary-red);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(255, 51, 51, 0.2);
+      background: linear-gradient(135deg, rgba(26, 0, 0, 1) 0%, rgba(50, 0, 0, 0.6) 100%);
+    }
+
+    .step-number {
+      font-size: 56px;
+      font-weight: 900;
+      color: var(--primary-red);
+      margin-bottom: 16px;
+      text-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
+    }
+
+    .step-title {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-gray);
+      line-height: 1.6;
+    }
+
+    /* CTA Buttons */
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 60px;
+    }
+
+    .btn {
+      padding: 16px 44px;
+      border: none;
+      border-radius: 4px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--primary-red);
+      color: var(--dark-bg);
+      box-shadow: 0 10px 30px rgba(255, 51, 51, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(255, 51, 51, 0.4);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        padding: 40px 16px;
+        min-height: auto;
+      }
+
+      .headline {
+        font-size: 36px;
+      }
+
+      .event-info {
+        gap: 12px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .top-bar {
+        flex-direction: column;
+        gap: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Bar -->
+  <div class="top-bar">
+    <div class="top-bar-left">GARANTA SEU ACESSO ANTES QUE AS VAGAS ESGOTEM</div>
+    <button class="top-cta">Garantir Acesso →</button>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <!-- Logo -->
+      <div class="logo-section">
+        <div class="logo-icon">FA</div>
+        <div class="logo-text">Flowgrammers</div>
+      </div>
+
+      <!-- Tag -->
+      <div class="tag">A DIFERENÇA NÃO É ESFORÇO. É MÉTODO.</div>
+
+      <!-- Headline -->
+      <h1 class="headline">
+        CORRE ATRÁS DE FEATURE.<br>
+        NO FIM, A ARQUITETURA<br>
+        <span class="headline-red">CONTINUA QUEBRADA</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="description">
+        Enquanto você corre atrás de features e bugs, seus concorrentes já construíram a arquitetura que <strong>escala 10x mais rápido</strong>. Os 5 Passos Para Construir Sistemas Completos com IA.
+      </p>
+
+      <!-- Main CTA -->
+      <button class="main-cta">
+        <span>Quero Dominar Engenharia de Agentes</span>
+        <span class="cta-arrow">→</span>
+      </button>
+
+      <!-- Event Info -->
+      <div class="event-info">
+        <span>15 de Abril • 20h</span>
+        <span>Evento ao Vivo</span>
+        <span>Sem Replay</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 Passos -->
+  <section id="passos">
+    <h2 class="section-title">Os 5 Passos do Método <span class="red">Engenharia de Agentes</span></h2>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">01</div>
+        <h3 class="step-title">Arquitetura de Intenção</h3>
+        <p class="step-desc">Como pensar e estruturar o que você quer construir antes de abrir qualquer ferramenta.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">02</div>
+        <h3 class="step-title">Configuração Estratégica</h3>
+        <p class="step-desc">Como preparar o ambiente, o CLAUDE.md e as instruções que fazem a IA trabalhar como um engenheiro sênior.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">03</div>
+        <h3 class="step-title">Construção Orquestrada</h3>
+        <p class="step-desc">Como dirigir a IA para construir sistemas multi-arquivo, com banco de dados, APIs e lógica de negócios.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">04</div>
+        <h3 class="step-title">Validação e Iteração</h3>
+        <p class="step-desc">Como revisar, testar e refinar o que a IA construiu. O segredo que separa lixo de projeto profissional.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">05</div>
+        <h3 class="step-title">Entrega e Monetização</h3>
+        <p class="step-desc">Como transformar o que você construiu em projeto vendável, produto escalável ou entrega enterprise.</p>
+      </div>
+    </div>
+
+    <div class="cta-buttons">
+      <button class="btn btn-primary">SIM! QUERO APRENDER OS 5 PASSOS</button>
+    </div>
+  </section>
+
+  <!-- Claude Code + OpenClaw -->
+  <section id="tools">
+    <h2 class="section-title">E Quando o <span class="red">Claude Code</span> Constrói...</h2>
+    <p class="section-description">OpenClaw coloca pra funcionar. Agentes Autônomos + Orquestração Multi-Agente + Sistema Completo em Produção 24/7.</p>
+
+    <div class="cta-buttons">
+      <button class="btn btn-primary">QUERO VER TUDO ISSO AO VIVO</button>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing">
+    <h2 class="section-title">Seu Investimento <span class="red">Hoje</span></h2>
+
+    <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+      <div style="font-size: 48px; font-weight: 900; color: var(--primary-red); margin-bottom: 12px; text-shadow: 0 0 20px rgba(255, 51, 51, 0.3);">
+        12x de R$ 10,03
+      </div>
+      <div style="font-size: 16px; color: var(--text-gray); margin-bottom: 8px;">
+        ou R$ 97,00 à vista
+      </div>
+      <p class="section-description" style="margin-bottom: 40px;">
+        Menos de R$ 10 por passo. Menos que um almoço. Você recebe <strong>R$ 4.682 em conteúdo, templates e ferramentas prontas</strong> pra sair vendendo sistemas de R$ 10K+.
+      </p>
+
+      <div class="cta-buttons">
+        <button class="btn btn-primary">GARANTIR MINHA VAGA POR 12X DE R$ 10,03</button>
+      </div>
+
+      <p style="font-size: 12px; color: var(--text-gray); margin-top: 24px; letter-spacing: 1px; text-transform: uppercase;">
+        Cartão (até 12x) • PIX • Boleto • Pagamento Seguro
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer Pattern -->
+  <div class="footer-pattern">
+    <div class="pattern-text">
+      <span class="red">●</span> ENGENHARIA DE AGENTES
+      <span class="red">●</span> ENGENHARIA DE AGENTES
+      <span class="red">●</span> ENGENHARIA DE AGENTES
+      <span class="red">●</span> ENGENHARIA DE AGENTES
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background: rgba(10, 10, 10, 0.95); border-top: 1px solid rgba(255, 51, 51, 0.2); padding: 40px 20px; text-align: center; color: var(--text-gray); font-size: 12px;">
+    <p><strong>FLOWGRAMMERS</strong></p>
+    <p style="margin-top: 8px;">Formando os profissionais que o mercado de IA precisa.</p>
+    <p style="margin-top: 12px; opacity: 0.6;">© 2024 Flowgrammers. Todos os direitos reservados.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.btn-primary, .top-cta, .main-cta').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          btn.style.transform = '';
+        }, 100);
+      });
+    });
+  </script>
+</body>
+</html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Engenharia de Agentes - Claude Code + OpenClaw. Os 5 Passos Para Construir Sistemas Completos com IA">
+  <title>Engenharia de Agentes | Claude Code + OpenClaw</title>
+
+  <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600&display=swap');
 
     * {
