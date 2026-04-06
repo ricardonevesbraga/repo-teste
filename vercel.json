@@ -1,4 +1,5 @@
 {
-  "buildCommand": "echo 'Static files'",
-  "outputDirectory": "public"
+  "buildCommand": "echo 'Building static site'",
+  "outputDirectory": "public",
+  "regions": ["sfo1"]
 }
