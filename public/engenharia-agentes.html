@@ -7,7 +7,7 @@
   <title>Engenharia de Agentes | Claude Code + OpenClaw</title>
 
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap');
 
     * {
       margin: 0;
@@ -43,7 +43,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       position: sticky;
@@ -97,7 +97,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 60px 20px;
+      padding: 80px 20px 60px;
     }
 
     .hero::before {
@@ -113,72 +113,109 @@
         linear-gradient(180deg, rgba(255, 51, 51, 0.08) 0%, transparent 100%);
       pointer-events: none;
       z-index: 1;
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 51, 51, 0.05) 50%, transparent 100%);
-      pointer-events: none;
-      z-index: 1;
-      animation: neon-pulse 3s ease-in-out infinite;
+      animation: neon-pulse 4s ease-in-out infinite;
     }
 
     @keyframes neon-pulse {
-      0%, 100% { opacity: 0.5; }
+      0%, 100% { opacity: 0.6; }
       50% { opacity: 1; }
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 900px;
-      text-align: center;
-      animation: fadeInUp 0.8s ease-out;
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      align-items: center;
     }
 
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .hero-text {
+      text-align: left;
     }
 
-    .logo-section {
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image-container {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .hero-image-container::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: linear-gradient(135deg, var(--primary-red), transparent, var(--primary-red));
+      border-radius: 12px;
+      z-index: 0;
+      animation: border-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes border-glow {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; box-shadow: 0 0 40px rgba(255, 51, 51, 0.6); }
+    }
+
+    .hero-image-container img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .hero-image-placeholder {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: rgba(255,51,51,0.4);
+      border: 1px solid rgba(255,51,51,0.2);
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .logo-icon {
-      width: 48px;
-      height: 48px;
-      border: 2px solid var(--primary-red);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 20px;
-      color: var(--primary-red);
-      text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
-    }
-
-    .logo-text {
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
+    }
+
+    .logo-badge img {
+      height: 36px;
+      width: auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border: 2px solid var(--primary-red);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 16px;
+      color: var(--primary-red);
+      text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
     }
 
     .tag {
@@ -206,7 +243,7 @@
       font-size: clamp(40px, 9vw, 76px);
       font-weight: 900;
       line-height: 1.1;
-      margin-bottom: 24px;
+      margin-bottom: 28px;
       letter-spacing: -1px;
     }
 
@@ -219,7 +256,7 @@
     .description {
       font-size: 16px;
       color: var(--text-gray);
-      margin-bottom: 40px;
+      margin-bottom: 44px;
       max-width: 650px;
       margin-left: auto;
       margin-right: auto;
@@ -230,6 +267,29 @@
     .description strong {
       color: var(--primary-red);
       font-weight: 700;
+    }
+
+    .pricing-box {
+      background: rgba(255, 51, 51, 0.1);
+      border: 1px solid rgba(255, 51, 51, 0.3);
+      padding: 28px;
+      border-radius: 8px;
+      margin-bottom: 40px;
+      display: inline-block;
+    }
+
+    .price-big {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--primary-red);
+      text-shadow: 0 0 20px rgba(255, 51, 51, 0.4);
+      margin-bottom: 8px;
+    }
+
+    .price-small {
+      font-size: 13px;
+      color: var(--text-gray);
+      font-weight: 600;
     }
 
     .main-cta {
@@ -259,67 +319,46 @@
       box-shadow: 0 20px 50px rgba(255, 51, 51, 0.4);
     }
 
-    .cta-arrow {
-      font-size: 20px;
-    }
-
     .event-info {
       font-size: 13px;
       color: var(--text-gray);
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
       flex-wrap: wrap;
       letter-spacing: 0.5px;
-    }
-
-    .event-info span {
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .event-info span::before {
       content: '●';
       color: var(--primary-red);
       font-size: 6px;
+      margin-right: 8px;
     }
 
-    /* Footer Pattern */
-    .footer-pattern {
-      background: linear-gradient(90deg, transparent 0%, rgba(255, 51, 51, 0.08) 50%, transparent 100%);
-      padding: 50px 20px 40px;
-      text-align: center;
-      border-top: 1px solid rgba(255, 51, 51, 0.2);
-      margin-top: 80px;
-      position: relative;
-    }
-
-    .pattern-text {
-      font-size: 12px;
-      color: var(--text-gray);
-      letter-spacing: 2px;
-      word-spacing: 12px;
-      opacity: 0.5;
-      font-weight: 600;
-    }
-
-    .pattern-text .red {
-      color: var(--primary-red);
-    }
-
-    /* Seções */
+    /* Section */
     section {
       padding: 100px 20px;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 51, 51, 0.3) 50%, transparent 100%);
     }
 
     .section-title {
       font-size: clamp(36px, 6vw, 56px);
       font-weight: 900;
-      margin-bottom: 60px;
+      margin-bottom: 16px;
       text-align: center;
       letter-spacing: -1px;
       line-height: 1.1;
@@ -328,6 +367,17 @@
     .section-title .red {
       color: var(--primary-red);
       text-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
+    }
+
+    .section-tag {
+      text-align: center;
+      font-size: 11px;
+      color: var(--primary-red);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: block;
     }
 
     .section-description {
@@ -342,30 +392,31 @@
     /* Steps Grid */
     .steps-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
     }
 
     .step-card {
       background: linear-gradient(135deg, rgba(26, 0, 0, 0.8) 0%, rgba(50, 0, 0, 0.4) 100%);
       border: 1px solid rgba(255, 51, 51, 0.3);
-      padding: 36px;
-      border-radius: 8px;
+      padding: 32px;
+      border-radius: 6px;
       transition: all 0.3s ease;
     }
 
     .step-card:hover {
       border-color: var(--primary-red);
-      transform: translateY(-8px);
-      box-shadow: 0 20px 50px rgba(255, 51, 51, 0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(255, 51, 51, 0.2);
       background: linear-gradient(135deg, rgba(26, 0, 0, 1) 0%, rgba(50, 0, 0, 0.6) 100%);
     }
 
     .step-number {
-      font-size: 56px;
+      font-size: 48px;
       font-weight: 900;
       color: var(--primary-red);
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       text-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
     }
 
@@ -378,6 +429,132 @@
 
     .step-desc {
       font-size: 14px;
+      color: var(--text-gray);
+      line-height: 1.6;
+    }
+
+    /* Bonus Grid */
+    .bonus-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .bonus-card {
+      background: linear-gradient(135deg, rgba(26, 0, 0, 0.8) 0%, rgba(50, 0, 0, 0.4) 100%);
+      border: 1px solid rgba(255, 51, 51, 0.3);
+      padding: 28px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .bonus-card:hover {
+      border-color: var(--primary-red);
+      transform: translateY(-6px);
+    }
+
+    .bonus-number {
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--primary-red);
+      margin-bottom: 12px;
+      text-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
+    }
+
+    .bonus-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .bonus-price {
+      font-size: 13px;
+      color: var(--primary-red);
+      font-weight: 700;
+      margin-bottom: 12px;
+      text-shadow: 0 0 10px rgba(255, 51, 51, 0.3);
+    }
+
+    .bonus-desc {
+      font-size: 13px;
+      color: var(--text-gray);
+      line-height: 1.5;
+    }
+
+    /* Total Value */
+    .total-box {
+      background: linear-gradient(135deg, rgba(26, 0, 0, 0.9) 0%, rgba(50, 0, 0, 0.5) 100%);
+      border: 2px solid var(--primary-red);
+      padding: 48px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 60px 0;
+      box-shadow: 0 0 40px rgba(255, 51, 51, 0.2);
+    }
+
+    .value-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+
+    .value-item {
+      font-size: 13px;
+      color: var(--text-gray);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .value-item::before {
+      content: '✓';
+      color: var(--primary-red);
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .value-total {
+      font-size: 44px;
+      font-weight: 900;
+      color: var(--primary-red);
+      margin: 32px 0 16px;
+      text-shadow: 0 0 30px rgba(255, 51, 51, 0.4);
+    }
+
+    /* FAQ */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .faq-item {
+      background: linear-gradient(135deg, rgba(26, 0, 0, 0.8) 0%, rgba(50, 0, 0, 0.4) 100%);
+      border: 1px solid rgba(255, 51, 51, 0.3);
+      padding: 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      border-color: var(--primary-red);
+      box-shadow: 0 10px 30px rgba(255, 51, 51, 0.1);
+    }
+
+    .faq-q {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 12px;
+      color: var(--primary-red);
+    }
+
+    .faq-a {
+      font-size: 13px;
       color: var(--text-gray);
       line-height: 1.6;
     }
@@ -415,6 +592,43 @@
       box-shadow: 0 20px 50px rgba(255, 51, 51, 0.4);
     }
 
+    /* Footer Pattern */
+    .footer-pattern {
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 51, 51, 0.08) 50%, transparent 100%);
+      padding: 60px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 51, 51, 0.2);
+      margin-top: 80px;
+    }
+
+    .pattern-text {
+      font-size: 12px;
+      color: var(--text-gray);
+      letter-spacing: 2px;
+      word-spacing: 16px;
+      opacity: 0.5;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .pattern-text .red {
+      color: var(--primary-red);
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(10, 10, 10, 0.95);
+      border-top: 1px solid rgba(255, 51, 51, 0.2);
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--text-gray);
+      font-size: 12px;
+    }
+
+    footer strong {
+      color: var(--primary-red);
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .hero {
@@ -422,12 +636,27 @@
         min-height: auto;
       }
 
-      .headline {
-        font-size: 36px;
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-text {
+        text-align: center;
+        order: 2;
+      }
+
+      .hero-visual {
+        order: 1;
       }
 
       .event-info {
+        justify-content: center;
         gap: 12px;
+      }
+
+      .headline {
+        font-size: 36px;
       }
 
       .cta-buttons {
@@ -442,6 +671,14 @@
         flex-direction: column;
         gap: 12px;
       }
+
+      .total-box {
+        padding: 32px;
+      }
+
+      .value-items {
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -455,45 +692,58 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <!-- Logo -->
-      <div class="logo-section">
-        <div class="logo-icon">FA</div>
-        <div class="logo-text">Flowgrammers</div>
+      <!-- Left: Text Content -->
+      <div class="hero-text">
+        <div class="logo-badge">
+          <img src="images/flowgrammers-logo.png" alt="Flowgrammers" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="logo-icon" style="display:none">FA</div>
+          <div>Flowgrammers</div>
+        </div>
+
+        <div class="tag">A DIFERENÇA NÃO É ESFORÇO. É ARQUITETURA.</div>
+
+        <h1 class="headline">
+          CORRE ATRÁS DE<br>FEATURE. NO FIM,<br>
+          <span class="headline-red">A ARQUITETURA CONTINUA QUEBRADA</span>
+        </h1>
+
+        <p class="description">
+          Enquanto você corre atrás de features e bugs, seus concorrentes já construíram a arquitetura que <strong>escala 10x mais rápido</strong>. Os 5 Passos Para Construir Sistemas Completos com IA.
+        </p>
+
+        <div class="pricing-box">
+          <div class="price-big">12x de R$ 10,03</div>
+          <div class="price-small">ou R$ 97 à vista</div>
+        </div>
+
+        <button class="main-cta">
+          <span>Quero Dominar Engenharia de Agentes</span>
+          <span>→</span>
+        </button>
+
+        <div class="event-info">
+          <span>15 de Abril • 20h</span>
+          <span>Evento ao Vivo</span>
+          <span>Sem Replay</span>
+        </div>
       </div>
 
-      <!-- Tag -->
-      <div class="tag">A DIFERENÇA NÃO É ESFORÇO. É MÉTODO.</div>
-
-      <!-- Headline -->
-      <h1 class="headline">
-        CORRE ATRÁS DE FEATURE.<br>
-        NO FIM, A ARQUITETURA<br>
-        <span class="headline-red">CONTINUA QUEBRADA</span>
-      </h1>
-
-      <!-- Description -->
-      <p class="description">
-        Enquanto você corre atrás de features e bugs, seus concorrentes já construíram a arquitetura que <strong>escala 10x mais rápido</strong>. Os 5 Passos Para Construir Sistemas Completos com IA.
-      </p>
-
-      <!-- Main CTA -->
-      <button class="main-cta">
-        <span>Quero Dominar Engenharia de Agentes</span>
-        <span class="cta-arrow">→</span>
-      </button>
-
-      <!-- Event Info -->
-      <div class="event-info">
-        <span>15 de Abril • 20h</span>
-        <span>Evento ao Vivo</span>
-        <span>Sem Replay</span>
+      <!-- Right: Visual -->
+      <div class="hero-visual">
+        <div class="hero-image-container">
+          <img src="images/ric.jpg" alt="Ric — Engenharia de Agentes com Claude Code" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="hero-image-placeholder" style="display:none">
+            <span>Aguardando imagem...</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 5 Passos -->
+  <!-- Os 5 Passos -->
   <section id="passos">
-    <h2 class="section-title">Os 5 Passos do Método <span class="red">Engenharia de Agentes</span></h2>
+    <span class="section-tag">● OS 5 PASSOS</span>
+    <h2 class="section-title">Método <span class="red">Engenharia de Agentes</span></h2>
 
     <div class="steps-grid">
       <div class="step-card">
@@ -528,42 +778,140 @@
     </div>
 
     <div class="cta-buttons">
-      <button class="btn btn-primary">SIM! QUERO APRENDER OS 5 PASSOS</button>
+      <button class="btn btn-primary">SIM, QUERO APRENDER OS 5 PASSOS</button>
     </div>
   </section>
 
   <!-- Claude Code + OpenClaw -->
   <section id="tools">
-    <h2 class="section-title">E Quando o <span class="red">Claude Code</span> Constrói...</h2>
-    <p class="section-description">OpenClaw coloca pra funcionar. Agentes Autônomos + Orquestração Multi-Agente + Sistema Completo em Produção 24/7.</p>
+    <span class="section-tag">● QUANDO O CLAUDE CODE CONSTRÓI...</span>
+    <h2 class="section-title"><span class="red">OpenClaw</span> Coloca Pra Funcionar</h2>
+    <p class="section-description">Agentes Autônomos • Orquestração Multi-Agente • Sistema Completo em Produção 24/7</p>
 
     <div class="cta-buttons">
       <button class="btn btn-primary">QUERO VER TUDO ISSO AO VIVO</button>
     </div>
   </section>
 
-  <!-- Pricing Section -->
-  <section id="pricing">
-    <h2 class="section-title">Seu Investimento <span class="red">Hoje</span></h2>
+  <!-- O Que Você Recebe -->
+  <section id="bonus">
+    <span class="section-tag">● O QUE VOCÊ RECEBE</span>
+    <h2 class="section-title">Veja Tudo Que Você<br><span class="red">Ganha Hoje</span></h2>
 
-    <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-      <div style="font-size: 48px; font-weight: 900; color: var(--primary-red); margin-bottom: 12px; text-shadow: 0 0 20px rgba(255, 51, 51, 0.3);">
-        12x de R$ 10,03
-      </div>
-      <div style="font-size: 16px; color: var(--text-gray); margin-bottom: 8px;">
-        ou R$ 97,00 à vista
-      </div>
-      <p class="section-description" style="margin-bottom: 40px;">
-        Menos de R$ 10 por passo. Menos que um almoço. Você recebe <strong>R$ 4.682 em conteúdo, templates e ferramentas prontas</strong> pra sair vendendo sistemas de R$ 10K+.
-      </p>
-
-      <div class="cta-buttons">
-        <button class="btn btn-primary">GARANTIR MINHA VAGA POR 12X DE R$ 10,03</button>
+    <div class="bonus-grid">
+      <div class="bonus-card">
+        <div class="bonus-number">01</div>
+        <h3 class="bonus-title">Masterclass Engenharia de Agentes</h3>
+        <div class="bonus-price">R$ 497</div>
+        <p class="bonus-desc">Os 5 passos completos do método + bloco avançado de OpenClaw. Ao vivo, interativo, com demonstrações em tempo real.</p>
       </div>
 
-      <p style="font-size: 12px; color: var(--text-gray); margin-top: 24px; letter-spacing: 1px; text-transform: uppercase;">
-        Cartão (até 12x) • PIX • Boleto • Pagamento Seguro
-      </p>
+      <div class="bonus-card">
+        <div class="bonus-number">02</div>
+        <h3 class="bonus-title">Mini-Curso Consultor de Automação</h3>
+        <div class="bonus-price">R$ 497</div>
+        <p class="bonus-desc">Como precificar projetos enterprise, conduzir negociações B2B e fechar contratos de alto valor.</p>
+      </div>
+
+      <div class="bonus-card">
+        <div class="bonus-number">03</div>
+        <h3 class="bonus-title">Kit de Vendas Profissional</h3>
+        <div class="bonus-price">R$ 697</div>
+        <p class="bonus-desc">Pitch deck editável, modelo de contrato, ferramenta de diagnóstico de ROI, templates de proposta.</p>
+      </div>
+
+      <div class="bonus-card">
+        <div class="bonus-number">04</div>
+        <h3 class="bonus-title">Pack Templates Premium</h3>
+        <div class="bonus-price">R$ 997</div>
+        <p class="bonus-desc">30+ templates enterprise validados. Automações de atendimento, processamento de dados, integrações com APIs.</p>
+      </div>
+    </div>
+
+    <div class="total-box">
+      <div style="font-size: 18px; color: var(--text-gray); margin-bottom: 24px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Resumo do que você recebe:</div>
+
+      <div class="value-items">
+        <div class="value-item">Evento ao vivo: Engenharia de Agentes</div>
+        <div class="value-item">Os 5 passos do método Claude Code</div>
+        <div class="value-item">Bloco avançado: OpenClaw</div>
+        <div class="value-item">Bônus: Mini-Curso Consultor</div>
+        <div class="value-item">Bônus: Kit de Vendas Completo</div>
+        <div class="value-item">Bônus: Pack Templates Premium</div>
+      </div>
+
+      <div style="border-top: 1px solid rgba(255, 51, 51, 0.3); padding-top: 32px; padding-bottom: 32px;">
+        <div style="font-size: 14px; color: var(--text-gray); margin-bottom: 8px;">Valor Total: <span style="text-decoration: line-through;">R$ 4.682</span></div>
+        <div class="value-total">Seu Investimento</div>
+        <div style="font-size: 18px; color: var(--text-gray); font-weight: 700; margin-bottom: 16px;">12x de R$ 10,03 ou R$ 97,00 à vista</div>
+        <div style="font-size: 13px; color: var(--text-gray);">Menos de R$ 10 por passo. Menos que um almoço.</div>
+      </div>
+    </div>
+
+    <div class="cta-buttons">
+      <button class="btn btn-primary">GARANTIR MINHA VAGA POR 12X DE R$ 10,03</button>
+    </div>
+
+    <p style="text-align: center; font-size: 12px; color: var(--text-gray); margin-top: 24px; letter-spacing: 1px; text-transform: uppercase;">
+      Cartão (até 12x) • PIX • Boleto • Pagamento Seguro
+    </p>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <span class="section-tag">● DÚVIDAS?</span>
+    <h2 class="section-title">Perguntas <span class="red">Frequentes</span></h2>
+
+    <div class="faq-grid">
+      <div class="faq-item">
+        <div class="faq-q">Vale a pena R$ 97 por um webinário?</div>
+        <div class="faq-a">Sim. Você recebe R$ 4.682 em conteúdo e ferramentas prontas pra sair vendendo sistemas de R$ 10K+.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Preciso saber programar?</div>
+        <div class="faq-a">Não. O método funciona com ou sem background técnico. Claude Code + OpenClaw fazem o código.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">E se eu já uso Claude Code?</div>
+        <div class="faq-a">Melhor ainda. Você aprende a multiplicar a produtividade + orquestração multi-agente com OpenClaw.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Qual a diferença pro YouTube?</div>
+        <div class="faq-a">YouTube é fragmentado. Aqui você tem método coeso + templates prontos + grupo de 500+ profissionais.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Tem replay?</div>
+        <div class="faq-a">Não. É ao vivo. A urgência é real. Ou você está lá aprendendo ou está ficando para trás.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Posso parcelar?</div>
+        <div class="faq-a">Sim. 12x de R$ 10,03 no cartão. Ou R$ 97 à vista em PIX ou boleto. Você escolhe.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section style="text-align: center;">
+    <h2 class="section-title">Daqui a 12 Meses,<br>Todo Mundo Vai Saber<br>O Que é <span class="red">Claude Code + OpenClaw</span></h2>
+
+    <p class="section-description" style="margin: 40px auto;">
+      A pergunta é: você vai ser quem <strong>ensina</strong> ou quem ainda está tentando aprender?
+    </p>
+
+    <div class="cta-buttons">
+      <button class="btn btn-primary">SIM! QUERO GARANTIR MINHA VAGA AGORA</button>
+    </div>
+
+    <div style="margin-top: 48px; font-size: 13px; color: var(--text-gray); text-transform: uppercase; letter-spacing: 1px;">
+      <div style="font-weight: 700; margin-bottom: 16px;">Engenharia de Agentes</div>
+      <div>Claude Code + OpenClaw</div>
+      <div style="margin-top: 8px;">15 de abril • 20h • Ao vivo • Sem replay</div>
+      <div style="margin-top: 16px; color: var(--primary-red); font-weight: 700; font-size: 18px;">12x de R$ 10,03 ou R$ 97,00 à vista</div>
     </div>
   </section>
 
@@ -578,10 +926,10 @@
   </div>
 
   <!-- Footer -->
-  <footer style="background: rgba(10, 10, 10, 0.95); border-top: 1px solid rgba(255, 51, 51, 0.2); padding: 40px 20px; text-align: center; color: var(--text-gray); font-size: 12px;">
+  <footer>
     <p><strong>FLOWGRAMMERS</strong></p>
     <p style="margin-top: 8px;">Formando os profissionais que o mercado de IA precisa.</p>
-    <p style="margin-top: 12px; opacity: 0.6;">© 2024 Flowgrammers. Todos os direitos reservados.</p>
+    <p style="margin-top: 12px; opacity: 0.7;">© 2024 Flowgrammers. Todos os direitos reservados.</p>
   </footer>
 
   <script>
@@ -591,953 +939,6 @@
         setTimeout(() => {
           btn.style.transform = '';
         }, 100);
-      });
-    });
-  </script>
-</body>
-</html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Engenharia de Agentes - Claude Code + OpenClaw. Os 5 Passos Para Construir Sistemas Completos com IA">
-  <title>Engenharia de Agentes | Claude Code + OpenClaw</title>
-
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@600&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --primary: #6366F1;
-      --primary-dark: #4F46E5;
-      --accent: #EC4899;
-      --dark-bg: #0F172A;
-      --card-bg: #1E293B;
-      --text-white: #FFFFFF;
-      --text-gray: #CBD5E1;
-      --border: #334155;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--dark-bg);
-      color: var(--text-white);
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-    }
-
-    /* Header */
-    header {
-      background: rgba(15, 23, 42, 0.95);
-      border-bottom: 1px solid var(--border);
-      padding: 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(10px);
-    }
-
-    .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 20px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .nav-cta {
-      background: var(--primary);
-      color: var(--dark-bg);
-      padding: 10px 24px;
-      border: none;
-      border-radius: 6px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 14px;
-    }
-
-    .nav-cta:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
-    /* Hero Section */
-    .hero {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 80px 20px;
-      text-align: center;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(99, 102, 241, 0.1);
-      border: 1px solid var(--primary);
-      color: var(--primary);
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 24px;
-    }
-
-    .hero h1 {
-      font-size: clamp(36px, 6vw, 64px);
-      font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      letter-spacing: -1px;
-    }
-
-    .hero-highlight {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-description {
-      font-size: 18px;
-      color: var(--text-gray);
-      max-width: 700px;
-      margin: 0 auto 40px;
-      line-height: 1.8;
-    }
-
-    .hero-pricing {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 32px;
-      margin-bottom: 32px;
-      flex-wrap: wrap;
-    }
-
-    .price-item {
-      text-align: center;
-    }
-
-    .price-big {
-      font-size: 32px;
-      font-weight: 800;
-      color: var(--accent);
-    }
-
-    .price-small {
-      font-size: 13px;
-      color: var(--text-gray);
-      margin-top: 4px;
-    }
-
-    .cta-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .btn {
-      padding: 16px 40px;
-      border: none;
-      border-radius: 6px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: var(--dark-bg);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--primary);
-      border: 2px solid var(--primary);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(99, 102, 241, 0.1);
-    }
-
-    .hero-footer {
-      font-size: 13px;
-      color: var(--text-gray);
-    }
-
-    /* Section */
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-size: clamp(32px, 5vw, 48px);
-      font-weight: 800;
-      margin-bottom: 60px;
-      text-align: center;
-    }
-
-    .section-subtitle {
-      font-size: 16px;
-      color: var(--text-gray);
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 60px;
-      line-height: 1.8;
-    }
-
-    /* 5 Passos Grid */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-bottom: 60px;
-    }
-
-    .step-card {
-      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(30, 41, 59, 0.5) 100%);
-      border: 1px solid var(--border);
-      padding: 40px;
-      border-radius: 12px;
-      transition: all 0.3s ease;
-    }
-
-    .step-card:hover {
-      border-color: var(--primary);
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
-    }
-
-    .step-number {
-      font-size: 48px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 16px;
-    }
-
-    .step-title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .step-desc {
-      font-size: 15px;
-      color: var(--text-gray);
-      line-height: 1.6;
-    }
-
-    /* OpenClaw Section */
-    .openclaw-section {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 60px 40px;
-      margin-bottom: 60px;
-    }
-
-    .openclaw-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-      margin-top: 40px;
-    }
-
-    .feature-card {
-      text-align: left;
-    }
-
-    .feature-icon {
-      font-size: 32px;
-      margin-bottom: 16px;
-    }
-
-    .feature-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .feature-desc {
-      font-size: 14px;
-      color: var(--text-gray);
-      line-height: 1.6;
-    }
-
-    /* Who is for section */
-    .who-section {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 60px;
-    }
-
-    .who-card {
-      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(30, 41, 59, 0.5) 100%);
-      border: 1px solid var(--border);
-      padding: 40px;
-      border-radius: 12px;
-    }
-
-    .who-card h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .who-card.no h3 {
-      color: #94A3B8;
-    }
-
-    .who-list {
-      list-style: none;
-    }
-
-    .who-list li {
-      padding: 8px 0;
-      font-size: 14px;
-      color: var(--text-gray);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .who-list li:before {
-      content: '✓';
-      color: var(--primary);
-      font-weight: 700;
-    }
-
-    .no .who-list li:before {
-      content: '✗';
-      color: #94A3B8;
-    }
-
-    /* Instrutor */
-    .instrutor-section {
-      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(30, 41, 59, 0.5) 100%);
-      border: 1px solid var(--border);
-      padding: 60px 40px;
-      border-radius: 12px;
-      text-align: center;
-    }
-
-    .instrutor-name {
-      font-size: 24px;
-      font-weight: 800;
-      margin-bottom: 12px;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .instrutor-creds {
-      font-size: 13px;
-      color: var(--primary);
-      font-weight: 600;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .instrutor-bio {
-      font-size: 15px;
-      color: var(--text-gray);
-      line-height: 1.8;
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Stats */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 32px;
-    }
-
-    .stat-card {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 36px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 12px;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      color: var(--text-gray);
-      line-height: 1.6;
-    }
-
-    /* Bônus */
-    .bonus-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-
-    .bonus-card {
-      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(30, 41, 59, 0.5) 100%);
-      border: 1px solid var(--border);
-      padding: 32px;
-      border-radius: 12px;
-    }
-
-    .bonus-number {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--primary);
-      margin-bottom: 12px;
-    }
-
-    .bonus-title {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .bonus-price {
-      font-size: 13px;
-      color: var(--primary);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .bonus-desc {
-      font-size: 13px;
-      color: var(--text-gray);
-      line-height: 1.6;
-    }
-
-    /* Total Value */
-    .total-value {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
-      border: 2px solid var(--primary);
-      padding: 40px;
-      border-radius: 12px;
-      text-align: center;
-      margin: 60px 0;
-    }
-
-    .value-items {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-bottom: 30px;
-      text-align: left;
-    }
-
-    .value-item {
-      font-size: 14px;
-      color: var(--text-gray);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .value-item:before {
-      content: '✓';
-      color: var(--primary);
-      font-weight: 700;
-      font-size: 16px;
-    }
-
-    .total-line {
-      border-top: 1px solid var(--border);
-      padding-top: 30px;
-      padding-bottom: 30px;
-      font-size: 18px;
-      color: var(--text-gray);
-    }
-
-    .total-price {
-      font-size: 48px;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 12px;
-    }
-
-    /* FAQ */
-    .faq-item {
-      background: linear-gradient(135deg, var(--card-bg) 0%, rgba(30, 41, 59, 0.5) 100%);
-      border: 1px solid var(--border);
-      padding: 24px;
-      border-radius: 12px;
-      margin-bottom: 16px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .faq-item:hover {
-      border-color: var(--primary);
-    }
-
-    .faq-q {
-      font-weight: 700;
-      font-size: 16px;
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .faq-a {
-      font-size: 14px;
-      color: var(--text-gray);
-      line-height: 1.6;
-      display: none;
-    }
-
-    .faq-item.active .faq-a {
-      display: block;
-    }
-
-    /* Footer */
-    footer {
-      background: rgba(15, 23, 42, 0.95);
-      border-top: 1px solid var(--border);
-      padding: 40px 20px;
-      text-align: center;
-      color: var(--text-gray);
-      font-size: 13px;
-    }
-
-    /* Responsivo */
-    @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .hero-pricing {
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .who-section {
-        grid-template-columns: 1fr;
-      }
-
-      .value-items {
-        text-align: center;
-      }
-
-      .cta-buttons {
-        flex-direction: column;
-      }
-
-      .btn {
-        width: 100%;
-      }
-    }
-
-    /* Animações */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    section {
-      animation: fadeInUp 0.6s ease-out;
-    }
-  </style>
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <div class="header-content">
-      <div class="logo">Flowgrammers</div>
-      <button class="nav-cta">Garantir Vaga</button>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-badge">EVENTO AO VIVO • 15 DE ABRIL ÀS 20H</div>
-
-    <h1>
-      <span class="hero-highlight">Engenharia de Agentes</span><br>
-      Claude Code + OpenClaw
-    </h1>
-
-    <p class="hero-description">
-      Os 5 Passos Para Construir Sistemas Completos com IA. O método completo para criar sistemas do zero ao deploy — com as duas ferramentas mais poderosas da era dos agentes.
-    </p>
-
-    <div class="hero-pricing">
-      <div class="price-item">
-        <div class="price-big">12x de R$ 10,03</div>
-        <div class="price-small">ou R$ 97 à vista</div>
-      </div>
-      <div class="price-item">
-        <div class="price-big">Evento ao Vivo</div>
-        <div class="price-small">Sem replay</div>
-      </div>
-    </div>
-
-    <div class="cta-buttons">
-      <button class="btn btn-primary">SIM! GARANTIR MINHA VAGA</button>
-      <button class="btn btn-secondary">Saiba Mais</button>
-    </div>
-
-    <div class="hero-footer">
-      Cartão (até 12x) • PIX • Boleto • Pagamento seguro
-    </div>
-  </section>
-
-  <!-- 5 Passos -->
-  <section id="passos">
-    <div class="section-title">Os 5 Passos do Método</div>
-
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-number">01</div>
-        <h3 class="step-title">Arquitetura de Intenção</h3>
-        <p class="step-desc">Como pensar e estruturar o que você quer construir antes de abrir qualquer ferramenta.</p>
-      </div>
-
-      <div class="step-card">
-        <div class="step-number">02</div>
-        <h3 class="step-title">Configuração Estratégica</h3>
-        <p class="step-desc">Como preparar o ambiente, o CLAUDE.md e as instruções que fazem a IA trabalhar como um engenheiro sênior.</p>
-      </div>
-
-      <div class="step-card">
-        <div class="step-number">03</div>
-        <h3 class="step-title">Construção Orquestrada</h3>
-        <p class="step-desc">Como dirigir a IA para construir sistemas multi-arquivo, com banco de dados, APIs e lógica de negócios.</p>
-      </div>
-
-      <div class="step-card">
-        <div class="step-number">04</div>
-        <h3 class="step-title">Validação e Iteração</h3>
-        <p class="step-desc">Como revisar, testar e refinar o que a IA construiu. O segredo que separa lixo de projeto profissional.</p>
-      </div>
-
-      <div class="step-card">
-        <div class="step-number">05</div>
-        <h3 class="step-title">Entrega e Monetização</h3>
-        <p class="step-desc">Como transformar o que você construiu em projeto vendável, produto escalável ou entrega enterprise.</p>
-      </div>
-    </div>
-
-    <div class="cta-buttons" style="margin-top: 60px;">
-      <button class="btn btn-primary">SIM, QUERO APRENDER OS 5 PASSOS</button>
-    </div>
-  </section>
-
-  <!-- OpenClaw -->
-  <section id="openclaw">
-    <div class="openclaw-section">
-      <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 12px;">E Quando o Claude Code Constrói...</h2>
-      <p style="font-size: 18px; color: var(--text-gray); margin-bottom: 40px;">OpenClaw coloca pra funcionar.</p>
-
-      <div class="openclaw-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🤖</div>
-          <h3 class="feature-title">Agentes Autônomos</h3>
-          <p class="feature-desc">Como conectar o OpenClaw ao Claude Code para criar agentes que executam tarefas sozinhos — do WhatsApp ao deploy.</p>
-          <p style="margin-top: 12px; font-size: 13px; color: var(--primary); font-weight: 600;">→ Imagine mandar um áudio descrevendo um bug e o agente corrigir, testar e subir sozinho.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">⚙️</div>
-          <h3 class="feature-title">Orquestração Multi-Agente</h3>
-          <p class="feature-desc">Como rodar múltiplos agentes em paralelo que testam, corrigem e entregam — multiplicando sua capacidade.</p>
-          <p style="margin-top: 12px; font-size: 13px; color: var(--primary); font-weight: 600;">→ Um agente cuida do backend. Outro do frontend. Você coordena.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon">🚀</div>
-          <h3 class="feature-title">Sistema Completo em Produção</h3>
-          <p class="feature-desc">Como integrar Claude Code + OpenClaw para ter um sistema inteligente rodando 24/7.</p>
-          <p style="margin-top: 12px; font-size: 13px; color: var(--primary); font-weight: 600;">→ A diferença entre ter uma ferramenta e ter um time digital.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="cta-buttons">
-      <button class="btn btn-primary">QUERO VER TUDO ISSO AO VIVO</button>
-    </div>
-  </section>
-
-  <!-- Para Quem É -->
-  <section id="para-quem">
-    <div class="section-title">Este Evento É Para Você Se...</div>
-
-    <div class="who-section">
-      <div class="who-card yes">
-        <h3>✓ PARA VOCÊ SE:</h3>
-        <ul class="who-list">
-          <li>Domina fluxos e integrações (AUTOMAÇÃO / N8N)</li>
-          <li>Quer parar de escrever boilerplate (DESENVOLVEDOR)</li>
-          <li>Quer prototipar ideias rápido (GESTOR / EMPREENDEDOR)</li>
-          <li>Quer aumentar ticket de R$ 2K pra R$ 50K (CONSULTOR)</li>
-          <li>Busca método, ferramenta e direção prática</li>
-        </ul>
-      </div>
-
-      <div class="who-card no">
-        <h3>✗ NÃO É PARA VOCÊ SE:</h3>
-        <ul class="who-list">
-          <li>Quer só acompanhar tendências</li>
-          <li>Quer "entender IA" sem aplicar</li>
-          <li>Não tem intenção de construir ou vender</li>
-          <li>Busca curso genérico de IA</li>
-          <li>Quer somente teoria sem prática</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Com Quem -->
-  <section id="instrutor">
-    <div class="section-title">Com Quem Você Vai Aprender</div>
-
-    <div class="instrutor-section">
-      <h2 class="instrutor-name">Ric Neves</h2>
-      <p class="instrutor-creds">n8n Certified Expert Partner • CAIO na ED • Founder da Flowgrammers AI Academy</p>
-
-      <p class="instrutor-bio">
-        Um dos principais nomes em Automação, IA Generativa e n8n no Brasil. Com mais de 20 anos de carreira em tecnologia, já passou por corporações bilionárias, startups e consultorias. Consultor de Transformação Digital, premiado duas vezes no Agile Trends. Lidera a Flowgrammers AI Academy, a primeira comunidade brasileira dedicada à formação de Gestores de Automação e Agentes de IA.
-      </p>
-    </div>
-  </section>
-
-  <!-- Por que Agora -->
-  <section id="por-que-agora">
-    <div class="section-title">Por Que Agora? Estes Números Explicam</div>
-
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number">US$ 2,5 bi/ano</div>
-        <div class="stat-label">É o que Claude Code já fatura. Crescimento mais rápido que o ChatGPT.</div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-number">344K+</div>
-        <div class="stat-label">OpenClaw é o projeto open-source de IA que mais cresce na história do GitHub.</div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-number">84%</div>
-        <div class="stat-label">Dos desenvolvedores no mundo já usam ferramentas de IA pra codificar.</div>
-      </div>
-
-      <div class="stat-card">
-        <div class="stat-number">+50%</div>
-        <div class="stat-label">Ganho médio de produtividade reportado por engenheiros que usam Claude Code.</div>
-      </div>
-    </div>
-
-    <p style="text-align: center; margin-top: 60px; font-size: 16px; color: var(--text-gray); line-height: 1.8; max-width: 700px; margin-left: auto; margin-right: auto;">
-      A janela de oportunidade é agora. Daqui a 12 meses, Claude Code + OpenClaw vão ser tão comuns quanto o Excel. Quem dominar agora vai estar posicionado como especialista.
-    </p>
-  </section>
-
-  <!-- O que Você Recebe -->
-  <section id="bonus">
-    <div class="section-title">Veja Tudo Que Você Recebe Hoje</div>
-
-    <div class="bonus-grid">
-      <div class="bonus-card">
-        <div class="bonus-number">01</div>
-        <h3 class="bonus-title">MASTERCLASS: ENGENHARIA DE AGENTES</h3>
-        <div class="bonus-price">R$ 497</div>
-        <p class="bonus-desc">Os 5 passos completos do método + bloco avançado de OpenClaw. Ao vivo, interativo, com demonstrações em tempo real.</p>
-      </div>
-
-      <div class="bonus-card">
-        <div class="bonus-number">02</div>
-        <h3 class="bonus-title">BÔNUS: MINI-CURSO CONSULTOR DE AUTOMAÇÃO</h3>
-        <div class="bonus-price">R$ 497</div>
-        <p class="bonus-desc">Como precificar projetos enterprise, conduzir negociações B2B e apresentar propostas que fecham contratos.</p>
-      </div>
-
-      <div class="bonus-card">
-        <div class="bonus-number">03</div>
-        <h3 class="bonus-title">BÔNUS: KIT DE VENDAS PROFISSIONAL COMPLETO</h3>
-        <div class="bonus-price">R$ 697</div>
-        <p class="bonus-desc">Pitch deck editável, modelo de contrato, ferramenta de diagnóstico de ROI, templates de proposta.</p>
-      </div>
-
-      <div class="bonus-card">
-        <div class="bonus-number">04</div>
-        <h3 class="bonus-title">BÔNUS: PACK TEMPLATES PREMIUM AVANÇADOS</h3>
-        <div class="bonus-price">R$ 997</div>
-        <p class="bonus-desc">30+ templates enterprise validados e workflows prontos. Automações de atendimento, processamento de dados, integrações com APIs.</p>
-      </div>
-    </div>
-
-    <!-- Total Value -->
-    <div class="total-value">
-      <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 30px;">Resumo do Que Você Recebe:</h3>
-
-      <div class="value-items">
-        <div class="value-item">Evento ao vivo: Engenharia de Agentes</div>
-        <div class="value-item">Os 5 passos do método Claude Code Engineering</div>
-        <div class="value-item">Bloco avançado: OpenClaw</div>
-        <div class="value-item">Bônus: Mini-Curso Consultor de Automação</div>
-        <div class="value-item">Bônus: Kit de Vendas Profissional Completo</div>
-        <div class="value-item">Bônus: Pack Templates Premium Avançados</div>
-      </div>
-
-      <div class="total-line">
-        <span style="color: var(--text-gray);">VALOR TOTAL:</span> <span style="color: var(--text-gray); text-decoration: line-through;">R$ 4.682</span>
-      </div>
-
-      <div class="total-price">Seu investimento hoje</div>
-      <div style="font-size: 18px; color: var(--text-gray); margin-bottom: 30px;">12x de R$ 10,03 ou R$ 97,00 à vista</div>
-      <p style="font-size: 14px; color: var(--text-gray);">Isso é menos de R$ 10 por passo. Menos que um almoço.</p>
-    </div>
-
-    <div class="cta-buttons" style="margin-top: 60px;">
-      <button class="btn btn-primary">GARANTIR MINHA VAGA POR 12X DE R$ 10,03</button>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="faq">
-    <div class="section-title">Perguntas Frequentes</div>
-
-    <div class="faq-item active">
-      <div class="faq-q">
-        "Vale a pena pagar R$ 97 por um webinário?"
-        <span>▼</span>
-      </div>
-      <div class="faq-a">
-        Sim. Você recebe R$ 4.682 em conteúdo, templates e ferramentas prontas pra usar. Isso não é teoria — é prática pra vender projetos de R$ 10K+.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">
-        "Preciso saber programar?"
-        <span>▼</span>
-      </div>
-      <div class="faq-a">
-        Não. O método funciona com ou sem background técnico. Claude Code + OpenClaw fazem o código. Você foca em arquitetura, lógica e entrega.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">
-        "E se eu já uso Claude Code?"
-        <span>▼</span>
-      </div>
-      <div class="faq-a">
-        Melhor ainda. Você vai aprender a multiplicar a produtividade + orquestração multi-agente com OpenClaw. É o próximo nível.
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <div class="faq-q">
-        "Qual a diferença desse evento pro conteúdo gratuito do YouTube?"
-        <span>▼</span>
-      </div>
-      <div class="faq-a">
-        YouTube é fragmentado. Aqui você tem método coeso + templates prontos + grupo de 500+ profissionais construindo junto. É a diferença entre aprender uma técnica e dominar um sistema.
-      </div>
-    </div>
-  </section>
-
-  <!-- Final CTA -->
-  <section style="text-align: center; padding-top: 60px; padding-bottom: 100px;">
-    <h2 style="font-size: 32px; font-weight: 800; margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto; line-height: 1.2;">
-      Daqui a 12 meses, todo mundo vai saber o que é Claude Code + OpenClaw. A pergunta é: você vai ser quem ensina ou quem ainda está tentando aprender?
-    </h2>
-
-    <div class="cta-buttons" style="margin-top: 40px;">
-      <button class="btn btn-primary">SIM! QUERO GARANTIR MINHA VAGA AGORA</button>
-    </div>
-
-    <div style="margin-top: 24px; font-size: 14px; color: var(--text-gray);">
-      <strong>ENGENHARIA DE AGENTES</strong><br>
-      Claude Code + OpenClaw<br>
-      <br>
-      <strong>Os 5 Passos Para Construir Sistemas Completos com IA</strong><br>
-      <br>
-      15 de abril • 20h • Ao vivo • Sem replay<br>
-      <br>
-      <strong style="color: var(--accent);">12x de R$ 10,03</strong> ou R$ 97,00 à vista
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p><strong>Flowgrammers</strong></p>
-    <p style="margin-top: 8px;">Flowgrammers AI Academy — Formando os profissionais que o mercado de IA precisa.</p>
-    <p style="margin-top: 12px; opacity: 0.7;">© 2024 Flowgrammers. Todos os direitos reservados.</p>
-  </footer>
-
-  <script>
-    // FAQ Toggle
-    document.querySelectorAll('.faq-item').forEach(item => {
-      item.addEventListener('click', () => {
-        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-      });
-    });
-
-    // Smooth Scroll
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        target && target.scrollIntoView({ behavior: 'smooth' });
       });
     });
   </script>

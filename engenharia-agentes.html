@@ -124,8 +124,67 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      max-width: 900px;
-      text-align: center;
+      max-width: 1200px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-text {
+      text-align: left;
+    }
+
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-image-container {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .hero-image-container::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: linear-gradient(135deg, var(--primary-red), transparent, var(--primary-red));
+      border-radius: 12px;
+      z-index: 0;
+      animation: border-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes border-glow {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; box-shadow: 0 0 40px rgba(255, 51, 51, 0.6); }
+    }
+
+    .hero-image-container img {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .hero-image-placeholder {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #1a0000 0%, #0a0a0a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: rgba(255,51,51,0.4);
+      border: 1px solid rgba(255,51,51,0.2);
     }
 
     .logo-badge {
@@ -137,6 +196,12 @@
       font-weight: 700;
       letter-spacing: 2px;
       text-transform: uppercase;
+    }
+
+    .logo-badge img {
+      height: 36px;
+      width: auto;
+      filter: brightness(0) invert(1);
     }
 
     .logo-icon {
@@ -258,7 +323,7 @@
       font-size: 13px;
       color: var(--text-gray);
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       gap: 20px;
       flex-wrap: wrap;
@@ -571,12 +636,27 @@
         min-height: auto;
       }
 
-      .headline {
-        font-size: 36px;
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-text {
+        text-align: center;
+        order: 2;
+      }
+
+      .hero-visual {
+        order: 1;
       }
 
       .event-info {
+        justify-content: center;
         gap: 12px;
+      }
+
+      .headline {
+        font-size: 36px;
       }
 
       .cta-buttons {
@@ -612,36 +692,50 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-content">
-      <div class="logo-badge">
-        <div class="logo-icon">FA</div>
-        <div>Flowgrammers</div>
+      <!-- Left: Text Content -->
+      <div class="hero-text">
+        <div class="logo-badge">
+          <img src="images/flowgrammers-logo.png" alt="Flowgrammers" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="logo-icon" style="display:none">FA</div>
+          <div>Flowgrammers</div>
+        </div>
+
+        <div class="tag">A DIFERENÇA NÃO É ESFORÇO. É ARQUITETURA.</div>
+
+        <h1 class="headline">
+          CORRE ATRÁS DE<br>FEATURE. NO FIM,<br>
+          <span class="headline-red">A ARQUITETURA CONTINUA QUEBRADA</span>
+        </h1>
+
+        <p class="description">
+          Enquanto você corre atrás de features e bugs, seus concorrentes já construíram a arquitetura que <strong>escala 10x mais rápido</strong>. Os 5 Passos Para Construir Sistemas Completos com IA.
+        </p>
+
+        <div class="pricing-box">
+          <div class="price-big">12x de R$ 10,03</div>
+          <div class="price-small">ou R$ 97 à vista</div>
+        </div>
+
+        <button class="main-cta">
+          <span>Quero Dominar Engenharia de Agentes</span>
+          <span>→</span>
+        </button>
+
+        <div class="event-info">
+          <span>15 de Abril • 20h</span>
+          <span>Evento ao Vivo</span>
+          <span>Sem Replay</span>
+        </div>
       </div>
 
-      <div class="tag">A DIFERENÇA NÃO É ESFORÇO. É ARQUITETURA.</div>
-
-      <h1 class="headline">
-        CORRE ATRÁS DE<br>FEATURE. NO FIM,<br>
-        <span class="headline-red">A ARQUITETURA CONTINUA QUEBRADA</span>
-      </h1>
-
-      <p class="description">
-        Enquanto você corre atrás de features e bugs, seus concorrentes já construíram a arquitetura que <strong>escala 10x mais rápido</strong>. Os 5 Passos Para Construir Sistemas Completos com IA.
-      </p>
-
-      <div class="pricing-box">
-        <div class="price-big">12x de R$ 10,03</div>
-        <div class="price-small">ou R$ 97 à vista</div>
-      </div>
-
-      <button class="main-cta">
-        <span>Quero Dominar Engenharia de Agentes</span>
-        <span>→</span>
-      </button>
-
-      <div class="event-info">
-        <span>15 de Abril • 20h</span>
-        <span>Evento ao Vivo</span>
-        <span>Sem Replay</span>
+      <!-- Right: Visual -->
+      <div class="hero-visual">
+        <div class="hero-image-container">
+          <img src="images/ric.jpg" alt="Ric — Engenharia de Agentes com Claude Code" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="hero-image-placeholder" style="display:none">
+            <span>Aguardando imagem...</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
